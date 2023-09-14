@@ -18,7 +18,7 @@ setxkbmap -layout us
 #Monitor Config
 bspc config remove_unplugged_monitors true
 bspc config remove_disabled_monitors true
-bspc monitor -d I II III IV V
+bspc monitor -d www dev meet work ent
 
 #BSPWM Config
 bspc config border_width        0
