@@ -37,8 +37,8 @@ do
 	[ ! -d "$DIR" ] && mkdir -p $DIR & echo "Directory created $DIR"
 done
 
-cp -R dotnetconfig/* /home/$username/$config[0]
-cp ./bg.jpg /home/$username/$config[2]
+cp -R dotnetconfig/* /home/$username/.config
+cp ./bg.jpg /home/$username/Pictures
 cp ./.Xresources /home/$username
 cp ./.Xnord /home/$username
 cp ./xinitrc /home/$username
