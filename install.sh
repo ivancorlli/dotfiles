@@ -91,7 +91,7 @@ rm -rf ~/.config/nvim/.git
 echo "LazyVim Installed"
 
 # Installing Programs
-nala install xorg sxhkd bspmw rofi thunar kitty neofetch htop dunst picom feh pulseaudio alsa-utils pavucontrol volumeicon-alsa blueman network-manager xrandr
+nala install xorg sxhkd bspwm rofi thunar kitty neofetch htop dunst picom feh pulseaudio alsa-utils pavucontrol volumeicon-alsa blueman network-manager
 
 nala autoremove
 
