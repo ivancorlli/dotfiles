@@ -24,13 +24,13 @@ nala update
 nala upgrade
 echo "Nala Installed"
 
-nala install apt-transport-https curl  wget -y
+nala install apt-transport-https curl wget neovim  -y
 
 # Making .config and Moving config files and background to Pictures
 cd $builddir
 
 # Creates config directories
-config=(.config .fonts Pictures)
+config=(.config .fonts Pictures )
 for key in "${config[@]}" 
 do
 	DIR=/home/$username/$key
@@ -44,11 +44,6 @@ cp ./.Xnord /home/$username
 cp ./xinitrc /home/$username
 mv ./user-dirs.dirs /home/$username/$config[0]
 chown -R $username:$username /home/$username
-
-# Install Nordic Theme
-cd /usr/share/themes/
-git clone https://github.com/EliverLara/Nordic.git
-echo "Nordic Theme Installed"
 
 # Install Font 
 cd $builddir 
@@ -68,7 +63,6 @@ echo "Fonts Installed"
 # Fonts and icons for now
 sudo nala install -y fonts-firacode
 
-
 # Install Cursor
 git clone https://github.com/alvatip/Nordzy-cursors
 cd Nordzy-cursors
@@ -77,6 +71,14 @@ cd $builddir
 rm -rf Nordzy-cursors
 echo "Cursor Installed"
 
+# Installing Programs
+nala install xorg sxhkd bspwm rofi thunar kitty neofetch htop
+
+# Install LazyVim
+git clone https://github.com/LazyVim/starter ~/.config/nvim
+rm -rf ~/.config/nvim/.git
+echo "LazyVim Installed"
+
 # Install Browser
 curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | tee /etc/apt/sources.list.d/brave-browser-release.list
@@ -84,16 +86,9 @@ nala update
 nala install brave-browser -y
 echo "Brave Installed"
 
-# Install LazyVim
-git clone https://github.com/LazyVim/starter ~/.config/nvim
-rm -rf ~/.config/nvim/.git
-
-echo "LazyVim Installed"
-
-# Installing Programs
-nala install xorg sxhkd bspwm rofi thunar kitty neofetch htop dunst picom feh pulseaudio alsa-utils pavucontrol volumeicon-alsa blueman network-manager
 
 nala autoremove
+nala autopurge
 
 printf "\e[1;32mYou can now reboot! Thanks you.\e[0m\n"
 
