@@ -38,11 +38,11 @@ do
 done
 
 cp -R dotnetconfig/* /home/$username/$config[0]
-cp bg.jpg /home/$username/$config[2]
-cp .Xresources /home/$username
-cp .Xnord /home/$username
-cp xinitrx /home/$username
-mv user-dirs-.dirs /home/$username/$config[0]
+cp ./bg.jpg /home/$username/$config[2]
+cp ./.Xresources /home/$username
+cp ./.Xnord /home/$username
+cp ./xinitrc /home/$username
+mv ./user-dirs.dirs /home/$username/$config[0]
 chown -R $username:$username /home/$username
 
 # Install Nordic Theme
