@@ -3,14 +3,6 @@
 
 # START APPS
 pgrep -x sxhkd > /dev/null || sxhkd &
-# Terminate already running bar instances
-killall -q polybar &
-# Wait until the processes have been shut down
-polybar -c ~/.config/polybar/config.ini &
-picom  &
-dunst &
-
-notify-send "BSPWM" "started"
 
 # Variable Defines
 color0=#3B4252
@@ -26,7 +18,7 @@ setxkbmap -layout us
 #Monitor Config
 bspc config remove_unplugged_monitors true
 bspc config remove_disabled_monitors true
-bspc monitor -d I II III IV V VI VII VIII IX X
+bspc monitor -d I II III IV V
 
 #BSPWM Config
 bspc config border_width        0
@@ -50,8 +42,4 @@ bspc config gapless_monocle      false
 bspc config focus_follows_pointer true
 
 bspc rule -a Brave-browser desktop='^1' follow=on
-bspc rule -a Gimp desktop='^8' state=floating follow=on
-bspc rule -a mplayer2 state=floating
 bspc rule -a *:my_float state=floating
-bspc rule -a Kupfer.py focus=on
-bspc rule -a Screenkey manage=off
