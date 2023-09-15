@@ -37,10 +37,10 @@ do
 	[ ! -d "$DIR" ] && mkdir -p $DIR & echo "Directory created $DIR"
 done
 
-cp dotnetconfig/* /home/$username/.config
-mv Pictures/*.png ./Pictures/*.jpg /home/$username/Pictures
+cp -R dotnetconfig/* /home/$username/.config
+cp -R Pictures/* /home/$username/Pictures
 cp xinitrc /home/$username
-mv user-dirs.dirs /home/$username/$config[0]
+mv user-dirs.dirs /home/$username/.config
 chown -R $username:$username /home/$username
 
 # Install Font 
