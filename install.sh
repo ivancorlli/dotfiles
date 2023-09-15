@@ -77,9 +77,9 @@ sudo nala autoremove
 sudo nala autopurge
 
 # Update Permissions
-sudo chmod u+x ~/.config/bspwm/bspwmrc
-sudo chmod u+x ~/.config/kitty/kitty.conf
-sudo chmod u+x ~/.config/picom/picom.conf
-sudo chmod u+x ~/.config/sxhkd/sxhkdrc
+sudo chmod u+x /home/$username/.config/bspwm/bspwmrc
+sudo chmod u+x /home/$username/.config/kitty/kitty.conf
+sudo chmod u+x /home/$username/.config/picom/picom.conf
+sudo chmod u+x /home/$username/.config/sxhkd/sxhkdrc
 
 printf "\e[1;32mYou can now reboot! Thanks you.\e[0m\n"
