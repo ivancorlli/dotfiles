@@ -68,12 +68,17 @@ echo "LazyVim Installed"
 # Install Browser
 curl -fsSLo /usr/share/keyrings/brave-browser-archive-keyring.gpg https://brave-browser-apt-release.s3.brave.com/brave-browser-archive-keyring.gpg
 echo "deb [signed-by=/usr/share/keyrings/brave-browser-archive-keyring.gpg arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | tee /etc/apt/sources.list.d/brave-browser-release.list
-nala update
-nala install brave-browser -y
+sudo nala update
+sudo nala install brave-browser -y
 echo "Brave Installed"
 
 
-nala autoremove
-nala autopurge
+sudo nala autoremove
+sudo nala autopurge
+
+# Update Permissions
+sudo chmod u+x ~/.config/bspwm/bspwmrc
+sudo chmod u+x ~/.config/kitty/kitty.conf
+sudo chmod u+x ~/.config/picom/picom.conf
 
 printf "\e[1;32mYou can now reboot! Thanks you.\e[0m\n"
