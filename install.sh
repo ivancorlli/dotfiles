@@ -61,7 +61,7 @@ sudo nala install xorg sxhkd bspwm rofi nitrogen thunar kitty neofetch htop pico
 sudo systemctl --user --now enable wireplumber.service
 
 # Install LazyVim
-git clone https://github.com/LazyVim/starter ~/.config/nvim
+sudo git clone https://github.com/LazyVim/starter ~/.config/nvim
 rm -rf ~/.config/nvim/.git
 echo "LazyVim Installed"
 
