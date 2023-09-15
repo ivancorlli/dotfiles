@@ -30,7 +30,7 @@ nala install apt-transport-https curl wget neovim  -y
 cd $builddir
 
 # Creates config directories
-config=(.config .fonts Pictures )
+config=( .config .fonts Desktop Downloads Pictures )
 for key in "${config[@]}" 
 do
 	DIR=/home/$username/$key
@@ -45,14 +45,11 @@ chown -R $username:$username /home/$username
 
 # Install Font 
 cd $builddir 
-nala install fonts-font-awesome
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
 unzip FiraCode.zip -d /home/$username/.fonts
 wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Meslo.zip
 unzip Meslo.zip -d /home/$username/.fonts
-mv dotfonts/fontawesome/otfs/*.otf /home/$username/.fonts/
 chown $username:$username /home/$username/.fonts/*
-
 # Reloading Font
 fc-cache -vf
 # Removing zip Files
@@ -60,7 +57,7 @@ rm ./FiraCode.zip ./Meslo.zip
 echo "Fonts Installed"
 
 # Installing Programs
-nala install xorg sxhkd bspwm rofi nitrogen thunar kitty neofetch htop picom pipewire wireplumbler
+sudo nala install xorg sxhkd bspwm rofi nitrogen thunar kitty neofetch htop picom pipewire wireplumbler
 sudo systemctl --user --now enable wireplumber.service
 
 # Install LazyVim
@@ -80,5 +77,3 @@ nala autoremove
 nala autopurge
 
 printf "\e[1;32mYou can now reboot! Thanks you.\e[0m\n"
-
-
