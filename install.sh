@@ -57,7 +57,8 @@ rm ./FiraCode.zip ./Meslo.zip
 echo "Fonts Installed"
 
 # Installing Programs
-sudo nala install xorg sxhkd bspwm rofi nitrogen thunar kitty neofetch htop picom pipewire wireplumbler -y 
+sudo nala install xorg sxhkd bspwm rofi nitrogen thunar kitty neofetch htop picom -y
+sudo nala install pipewire wireplumber -y 
 sudo systemctl --user --now enable wireplumber.service
 
 # Install LazyVim
@@ -72,7 +73,6 @@ sudo nala update
 sudo nala install brave-browser -y
 echo "Brave Installed"
 
-
 sudo nala autoremove
 sudo nala autopurge
 
@@ -80,5 +80,6 @@ sudo nala autopurge
 sudo chmod u+x ~/.config/bspwm/bspwmrc
 sudo chmod u+x ~/.config/kitty/kitty.conf
 sudo chmod u+x ~/.config/picom/picom.conf
+sudo chmod u+x ~/.config/sxhkd/sxhkdrc
 
 printf "\e[1;32mYou can now reboot! Thanks you.\e[0m\n"
