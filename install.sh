@@ -59,16 +59,9 @@ fc-cache -vf
 rm ./FiraCode.zip ./Meslo.zip
 echo "Fonts Installed"
 
-# Install Cursor
-git clone https://github.com/alvatip/Nordzy-cursors
-cd Nordzy-cursors
-./install.sh
-cd $builddir
-rm -rf Nordzy-cursors
-echo "Cursor Installed"
-
 # Installing Programs
-nala install xorg sxhkd bspwm rofi nitrogen thunar kitty neofetch htop picom
+nala install xorg sxhkd bspwm rofi nitrogen thunar kitty neofetch htop picom pipewire wireplumbler
+sudo systemctl --user --now enable wireplumber.service
 
 # Install LazyVim
 git clone https://github.com/LazyVim/starter ~/.config/nvim
