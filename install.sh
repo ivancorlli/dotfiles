@@ -24,7 +24,7 @@ nala update
 nala upgrade
 echo "Nala Installed"
 
-nala install apt-transport-https curl wget neovim  -y
+sudo nala install apt-transport-https curl wget neovim  -y
 
 # Making .config and Moving config files and background to Pictures
 cd $builddir
@@ -57,7 +57,7 @@ rm ./FiraCode.zip ./Meslo.zip
 echo "Fonts Installed"
 
 # Installing Programs
-sudo nala install xorg sxhkd bspwm rofi nitrogen thunar kitty neofetch htop picom pipewire wireplumbler
+sudo nala install xorg sxhkd bspwm rofi nitrogen thunar kitty neofetch htop picom pipewire wireplumbler -y 
 sudo systemctl --user --now enable wireplumber.service
 
 # Install LazyVim
