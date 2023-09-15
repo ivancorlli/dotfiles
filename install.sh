@@ -38,9 +38,7 @@ do
 done
 
 cp -R dotnetconfig/* /home/$username/.config
-cp ./bg.jpg /home/$username/Pictures
-cp ./.Xresources /home/$username
-cp ./.Xnord /home/$username
+mv ./Pictures/*.png ./Pictures/*.jpg /home/$username/Pictures
 cp ./xinitrc /home/$username
 mv ./user-dirs.dirs /home/$username/$config[0]
 chown -R $username:$username /home/$username
@@ -60,8 +58,6 @@ fc-cache -vf
 # Removing zip Files
 rm ./FiraCode.zip ./Meslo.zip
 echo "Fonts Installed"
-# Fonts and icons for now
-sudo nala install -y fonts-firacode
 
 # Install Cursor
 git clone https://github.com/alvatip/Nordzy-cursors
@@ -72,7 +68,7 @@ rm -rf Nordzy-cursors
 echo "Cursor Installed"
 
 # Installing Programs
-nala install xorg sxhkd bspwm rofi thunar kitty neofetch htop
+nala install xorg sxhkd bspwm rofi nitrogen thunar kitty neofetch htop picom
 
 # Install LazyVim
 git clone https://github.com/LazyVim/starter ~/.config/nvim
