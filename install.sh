@@ -54,12 +54,6 @@ if command -v fdfind >/dev/null 2>&1 && ! command -v fd >/dev/null 2>&1; then
   ln -s -- "$(command -v fdfind)" "$HOME/.local/bin/fd"
 fi
 
-if ! command -v mise >/dev/null 2>&1; then
-  info "Installing mise"
-  curl --fail --location https://mise.run | sh
-  export PATH="$HOME/.local/bin:$PATH"
-fi
-
 backup_and_copy() {
   local source_path="$1" target_path="$2"
   mkdir -p "$(dirname -- "$target_path")"
@@ -93,12 +87,6 @@ mkdir -p "$HOME/.config/nvim/lua/config" "$HOME/.config/nvim/lua/plugins"
 backup_and_copy "$repo_root/nvim/lua/config/options.lua" "$HOME/.config/nvim/lua/config/options.lua"
 backup_and_copy "$repo_root/nvim/lua/config/keymaps.lua" "$HOME/.config/nvim/lua/config/keymaps.lua"
 backup_and_copy "$repo_root/nvim/lua/plugins/linting.lua" "$HOME/.config/nvim/lua/plugins/linting.lua"
-
-if command -v mise >/dev/null 2>&1; then
-  info "Installing mise-managed runtimes"
-  mise trust "$repo_root/mise/config.toml"
-  mise --cd "$repo_root" install
-fi
 
 if command -v git-lfs >/dev/null 2>&1; then
   git lfs install

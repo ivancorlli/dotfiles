@@ -26,10 +26,28 @@ official `universe` repository because several workstation tools are published
 there. It validates package availability before installation, is idempotent,
 and creates timestamped backups before replacing existing managed files.
 
-`mise` is installed from its official installer when it is not already
-available. Herdr is intentionally not downloaded from an arbitrary URL: its
-release/distribution source must be configured separately when a new machine
-does not already provide the `herdr` executable.
+The installer intentionally does not install `mise`, `starship`, or `lazygit`.
+Their installation sources and versions are managed manually. Herdr is also
+not downloaded from an arbitrary URL: its release/distribution source must be
+configured separately when a new machine does not already provide the
+`herdr` executable.
+
+Install the excluded tools before or after this installer:
+
+```sh
+# Install mise using the method you prefer, then install declared runtimes.
+mise install --cd "$HOME/.dotfiles"
+
+# Install starship and lazygit using their official release/install methods.
+```
+
+Verify the manual tools before starting a new shell:
+
+```sh
+mise --version
+starship --version
+lazygit --version
+```
 
 After installation, start a new shell or run:
 
