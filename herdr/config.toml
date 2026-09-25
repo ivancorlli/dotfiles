@@ -1,0 +1,29 @@
+onboarding = false
+
+[ui]
+status_indicators = "symbols"
+
+[ui.toast]
+delivery = "system"
+
+[theme]
+name = "catppuccin"
+auto_switch = false
+
+[keys]
+
+# Workspace navigation
+previous_workspace = "prefix+{"
+next_workspace = "prefix+}"
+switch_workspace = "prefix+shift+1..9"
+
+# Worktrees
+open_worktree = "prefix+shift+o"
+remove_worktree = "prefix+alt+d"
+
+# Tabs
+move_tab_previous = "prefix+<"
+move_tab_next = "prefix+>"
+
+# Panes
+last_pane = "prefix+;"

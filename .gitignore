@@ -1,0 +1,6 @@
+.local/
+*.local
+secrets/
+*.secret
+*.env
+!*.env.example
