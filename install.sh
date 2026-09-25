@@ -54,6 +54,25 @@ if command -v fdfind >/dev/null 2>&1 && ! command -v fd >/dev/null 2>&1; then
   ln -s -- "$(command -v fdfind)" "$HOME/.local/bin/fd"
 fi
 
+required_external_tools=(nvim mise starship lazygit herdr)
+missing_external_tools=()
+for tool in "${required_external_tools[@]}"; do
+  if ! command -v "$tool" >/dev/null 2>&1; then
+    missing_external_tools+=("$tool")
+  fi
+done
+if ! command -v nvim >/dev/null 2>&1 || ! nvim --version | awk 'NR == 1 { sub(/^v/, "", $2); split($2, version, "."); exit ! (version[1] > 0 || (version[1] == 0 && version[2] > 11 || version[2] == 11 && version[3] >= 2)) }'; then
+  if [[ " ${missing_external_tools[*]} " != *" nvim "* ]]; then
+    missing_external_tools+=("nvim>=0.11.2")
+  fi
+fi
+if ((${#missing_external_tools[@]} > 0)); then
+  warn "Install these external tools before running install.sh:"
+  printf '  %s\n' "${missing_external_tools[@]}" >&2
+  warn "See the official installation links in README.md."
+  exit 1
+fi
+
 backup_and_copy() {
   local source_path="$1" target_path="$2"
   mkdir -p "$(dirname -- "$target_path")"

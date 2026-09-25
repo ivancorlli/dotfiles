@@ -49,6 +49,35 @@ starship --version
 lazygit --version
 ```
 
+## External tools
+
+Install these tools manually before running `install.sh`:
+
+| Tool | Requirement | Official installation |
+| --- | --- | --- |
+| Neovim | `>= 0.11.2` | [Releases](https://github.com/neovim/neovim/releases) |
+| mise | Current version | [Install mise](https://mise.jdx.dev/installing-mise.html) |
+| Starship | Current version | [Installation guide](https://starship.rs/guide/#installation) |
+| Lazygit | Current version | [Installation guide](https://github.com/jesseduffield/lazygit#installation) |
+| Herdr | Current version | Use the official Herdr distribution source |
+
+The installer checks that these commands are available and rejects Neovim
+versions older than `0.11.2` before applying configuration.
+
+## APT tools
+
+The installer installs these tools through the configured Debian/Ubuntu APT
+repositories. Ubuntu enables the official `universe` component first:
+
+```text
+zsh, fzf, zoxide, eza, bat, git, git-lfs, gh, tmux,
+ripgrep, fd-find, jq, shellcheck, shfmt, curl, ca-certificates,
+unzip, build-essential
+```
+
+On Debian/Ubuntu, `bat` is exposed as `batcat` and `fd-find` as `fdfind`; the
+installer and shell configuration provide the expected `bat`/`fd` workflow.
+
 After installation, start a new shell or run:
 
 ```sh
