@@ -21,8 +21,10 @@ git clone <private-repository-url> "$HOME/.dotfiles"
 "$HOME/.dotfiles/install.sh"
 ```
 
-The installer is intended for Debian and Ubuntu. It is idempotent and creates
-timestamped backups before replacing existing managed files.
+The installer is intended for Debian and Ubuntu. On Ubuntu it enables the
+official `universe` repository because several workstation tools are published
+there. It validates package availability before installation, is idempotent,
+and creates timestamped backups before replacing existing managed files.
 
 `mise` is installed from its official installer when it is not already
 available. Herdr is intentionally not downloaded from an arbitrary URL: its

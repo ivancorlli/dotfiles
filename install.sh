@@ -23,9 +23,30 @@ case "${ID:-}" in
   *) warn "Unsupported distribution: ${ID:-unknown}. Debian and Ubuntu are supported."; exit 1 ;;
 esac
 
+if [[ "$ID" == "ubuntu" ]]; then
+  info "Enabling Ubuntu universe repository"
+  if ! command -v add-apt-repository >/dev/null 2>&1; then
+    sudo apt-get update
+    sudo apt-get install -y --no-install-recommends software-properties-common
+  fi
+  sudo add-apt-repository -y universe
+fi
+
 info "Installing system packages"
 sudo apt-get update
-sudo apt-get install -y --no-install-recommends $(tr '\n' ' ' < "$repo_root/packages/apt.txt")
+mapfile -t apt_packages < <(sed '/^[[:space:]]*#/d; /^[[:space:]]*$/d' "$repo_root/packages/apt.txt")
+missing_packages=()
+for package in "${apt_packages[@]}"; do
+  if ! apt-cache show "$package" >/dev/null 2>&1; then
+    missing_packages+=("$package")
+  fi
+done
+if ((${#missing_packages[@]} > 0)); then
+  warn "Packages are unavailable in the configured repositories:"
+  printf '  %s\n' "${missing_packages[@]}" >&2
+  exit 1
+fi
+sudo apt-get install -y --no-install-recommends "${apt_packages[@]}"
 
 # Debian and Ubuntu package the fd binary as fdfind to avoid a name collision.
 if command -v fdfind >/dev/null 2>&1 && ! command -v fd >/dev/null 2>&1; then
