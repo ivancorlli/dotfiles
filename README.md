@@ -42,7 +42,7 @@ other credentials separately on each machine.
 
 ## Managed files
 
-The installer links these files from this repository:
+The installer copies these files from this repository:
 
 ```text
 ~/.zshrc                 shell/zshrc
@@ -54,8 +54,14 @@ The installer links these files from this repository:
 ~/.config/herdr/.plugins.lock herdr/.plugins.lock
 ```
 
-Machine-specific overrides are not managed by this repository. Secrets, SSH keys, command history, caches,
-sessions, logs, and authentication databases must never be committed here.
+The installed files are independent copies, not symlinks. The repository can
+be removed from the machine after installation without breaking the shell,
+editor, or other tools. Rerunning the installer backs up changed files under
+`~/.dotfiles-backups/` before replacing them.
+
+Machine-specific overrides are not managed by this repository. Secrets, SSH
+keys, command history, caches, sessions, logs, and authentication databases
+must never be committed here.
 
 ## Why these tools
 

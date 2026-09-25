@@ -60,27 +60,27 @@ if ! command -v mise >/dev/null 2>&1; then
   export PATH="$HOME/.local/bin:$PATH"
 fi
 
-backup_and_link() {
+backup_and_copy() {
   local source_path="$1" target_path="$2"
   mkdir -p "$(dirname -- "$target_path")"
   if [[ -e "$target_path" || -L "$target_path" ]]; then
-    if [[ "$(readlink -f -- "$target_path" 2>/dev/null || true)" == "$(readlink -f -- "$source_path")" ]]; then
+    if [[ ! -L "$target_path" ]] && cmp -s -- "$source_path" "$target_path"; then
       return
     fi
     mkdir -p "$backup_root"
     mv -- "$target_path" "$backup_root/$(basename -- "$target_path")"
   fi
-  ln -s -- "$source_path" "$target_path"
+  cp -a -- "$source_path" "$target_path"
 }
 
-info "Linking configuration"
-backup_and_link "$repo_root/shell/zshrc" "$HOME/.zshrc"
-backup_and_link "$repo_root/starship/starship.toml" "$HOME/.config/starship.toml"
-backup_and_link "$repo_root/git/gitconfig" "$HOME/.gitconfig"
-backup_and_link "$repo_root/tmux/tmux.conf" "$HOME/.tmux.conf"
-backup_and_link "$repo_root/mise/config.toml" "$HOME/.config/mise/config.toml"
-backup_and_link "$repo_root/herdr/config.toml" "$HOME/.config/herdr/config.toml"
-backup_and_link "$repo_root/herdr/.plugins.lock" "$HOME/.config/herdr/.plugins.lock"
+info "Copying configuration"
+backup_and_copy "$repo_root/shell/zshrc" "$HOME/.zshrc"
+backup_and_copy "$repo_root/starship/starship.toml" "$HOME/.config/starship.toml"
+backup_and_copy "$repo_root/git/gitconfig" "$HOME/.gitconfig"
+backup_and_copy "$repo_root/tmux/tmux.conf" "$HOME/.tmux.conf"
+backup_and_copy "$repo_root/mise/config.toml" "$HOME/.config/mise/config.toml"
+backup_and_copy "$repo_root/herdr/config.toml" "$HOME/.config/herdr/config.toml"
+backup_and_copy "$repo_root/herdr/.plugins.lock" "$HOME/.config/herdr/.plugins.lock"
 
 info "Installing the latest LazyVim starter"
 if [[ -e "$HOME/.config/nvim" || -L "$HOME/.config/nvim" ]]; then
@@ -90,9 +90,9 @@ fi
 git clone --depth=1 https://github.com/LazyVim/starter "$HOME/.config/nvim"
 rm -rf "$HOME/.config/nvim/.git"
 mkdir -p "$HOME/.config/nvim/lua/config" "$HOME/.config/nvim/lua/plugins"
-backup_and_link "$repo_root/nvim/lua/config/options.lua" "$HOME/.config/nvim/lua/config/options.lua"
-backup_and_link "$repo_root/nvim/lua/config/keymaps.lua" "$HOME/.config/nvim/lua/config/keymaps.lua"
-backup_and_link "$repo_root/nvim/lua/plugins/linting.lua" "$HOME/.config/nvim/lua/plugins/linting.lua"
+backup_and_copy "$repo_root/nvim/lua/config/options.lua" "$HOME/.config/nvim/lua/config/options.lua"
+backup_and_copy "$repo_root/nvim/lua/config/keymaps.lua" "$HOME/.config/nvim/lua/config/keymaps.lua"
+backup_and_copy "$repo_root/nvim/lua/plugins/linting.lua" "$HOME/.config/nvim/lua/plugins/linting.lua"
 
 if command -v mise >/dev/null 2>&1; then
   info "Installing mise-managed runtimes"
