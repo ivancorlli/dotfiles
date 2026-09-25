@@ -1,8 +1,6 @@
 zsh
 fzf
 zoxide
-starship
-lazygit
 eza
 bat
 git
